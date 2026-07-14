@@ -3,55 +3,52 @@
   "author": "Chayma",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "board-stm32-bluepill",
-      "id": "stm32",
-      "top": 0,
-      "left": 0,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-dht22",
-      "id": "dht1",
-      "top": -100,
-      "left": 150,
-      "attrs": {}
-    },
-    {
-      "type": "wokwi-led",
-      "id": "led_alert",
-      "top": 50,
-      "left": 150,
-      "attrs": { "color": "red" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r1",
-      "top": 100,
-      "left": 150,
-      "attrs": { "value": "220" }
-    },
-    {
-      "type": "board-ssd1306",
-      "id": "oled1",
-      "top": -100,
-      "left": -150,
-      "attrs": { "i2cAddress": "0x3c" }
-    }
+    { "type": "board-stm32-bluepill", "id": "stm32", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -150, "left": 200, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_alert", "top": 50, "left": 200, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 100, "left": 200, "attrs": { "value": "220" } },
+    { "type": "board-ssd1306", "id": "oled1", "top": -150, "left": -200, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 0, "left": -250, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "mq2_1", "top": 100, "left": -250, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "buzzer1", "top": 150, "left": 100, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo1", "top": -50, "left": 300, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 150, "left": -100, "attrs": {} }
   ],
   "connections": [
     ["stm32:A9", "$serialMonitor:RX", "green", []],
     ["stm32:A10", "$serialMonitor:TX", "green", []],
+
     ["dht1:VCC", "stm32:3V3", "red", []],
     ["dht1:GND", "stm32:GND.1", "black", []],
     ["dht1:SDA", "stm32:B9", "green", []],
+
     ["led_alert:A", "stm32:B8", "green", []],
     ["led_alert:C", "r1:1", "black", []],
     ["r1:2", "stm32:GND.2", "black", []],
+
     ["oled1:VCC", "stm32:3V3", "red", []],
     ["oled1:GND", "stm32:GND.1", "black", []],
     ["oled1:SCL", "stm32:B6", "yellow", []],
-    ["oled1:SDA", "stm32:B7", "blue", []]
+    ["oled1:SDA", "stm32:B7", "blue", []],
+
+    ["ldr1:VCC", "stm32:3V3", "red", []],
+    ["ldr1:GND", "stm32:GND.2", "black", []],
+    ["ldr1:AO", "stm32:A0", "orange", []],
+
+    ["mq2_1:VCC", "stm32:5V", "red", []],
+    ["mq2_1:GND", "stm32:GND.2", "black", []],
+    ["mq2_1:AO", "stm32:A1", "orange", []],
+
+    ["buzzer1:1", "stm32:A2", "green", []],
+    ["buzzer1:2", "stm32:GND.2", "black", []],
+
+    ["servo1:PWM", "stm32:A3", "green", []],
+    ["servo1:V+", "stm32:5V", "red", []],
+    ["servo1:GND", "stm32:GND.2", "black", []],
+
+    ["relay1:IN", "stm32:A4", "green", []],
+    ["relay1:VCC", "stm32:5V", "red", []],
+    ["relay1:GND", "stm32:GND.2", "black", []]
   ],
   "dependencies": {}
 }
