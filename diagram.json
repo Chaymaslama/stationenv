@@ -12,7 +12,10 @@
     { "type": "wokwi-gas-sensor", "id": "mq2_1", "top": 100, "left": -250, "attrs": {} },
     { "type": "wokwi-buzzer", "id": "buzzer1", "top": 150, "left": 100, "attrs": {} },
     { "type": "wokwi-servo", "id": "servo1", "top": -50, "left": 300, "attrs": {} },
-    { "type": "wokwi-relay-module", "id": "relay1", "top": 150, "left": -100, "attrs": {} }
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 150, "left": -100, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 200, "left": -250, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btn1", "top": 250, "left": 100, "attrs": { "color": "green" } },
+    { "type": "wokwi-rgb-led", "id": "rgb1", "top": -50, "left": 400, "attrs": {} }
   ],
   "connections": [
     ["stm32:A9", "$serialMonitor:RX", "green", []],
@@ -48,7 +51,19 @@
 
     ["relay1:IN", "stm32:A4", "green", []],
     ["relay1:VCC", "stm32:5V", "red", []],
-    ["relay1:GND", "stm32:GND.2", "black", []]
+    ["relay1:GND", "stm32:GND.2", "black", []],
+
+    ["pir1:VCC", "stm32:5V", "red", []],
+    ["pir1:GND", "stm32:GND.2", "black", []],
+    ["pir1:OUT", "stm32:A5", "orange", []],
+
+    ["btn1:1.l", "stm32:A6", "green", []],
+    ["btn1:2.l", "stm32:GND.2", "black", []],
+
+    ["rgb1:R", "stm32:A7", "red", []],
+    ["rgb1:G", "stm32:B0", "green", []],
+    ["rgb1:B", "stm32:B1", "blue", []],
+    ["rgb1:COM", "stm32:GND.2", "black", []]
   ],
   "dependencies": {}
 }
